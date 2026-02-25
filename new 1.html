@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Four Souls, Four Goals</title>
+<style>
+/* GENERAL */
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    text-align:center;
+    background-image:url('quad.jpg'); /* homepage bg */
+    background-size: cover;
+    background-position: center;
+    color:white;
+}
+
+nav {
+    position: fixed;
+    top:0;
+    width:100%;
+    background: rgba(0,0,0,0.6);
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    padding:15px 0;
+    z-index:2;
+}
+
+nav a { color:white; text-decoration:none; font-weight:bold; cursor:pointer;}
+nav a:hover { color:orange; }
+
+.page {
+    display:none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height:100vh;
+    padding-top:60px;
+	
+}
+
+/* INTRO PAGE */
+#introPage {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:pink;
+}
+
+.intro-box {
+    background-color: rgba(255,255,255,0.85);
+    padding: 60px 80px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 80%;
+    color:black;
+}
+
+.intro-box h1 { font-size:3em; margin-bottom:20px; }
+.intro-box p { font-size:1.5em; margin-bottom:30px; line-height:1.5; }
+.intro-box button {
+    padding:15px 50px;
+    font-size:1.5em;
+    background-color:black;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+.intro-box button:hover { transform: scale(1.05); }
+
+/* HOMEPAGE */
+#mainPage .content-box {
+    background-color: rgba(255,255,255,0.8);
+    padding: 40px;
+    border-radius: 20px;
+    display: inline-block;
+    color:black;
+}
+
+.container { display:flex; gap:30px; flex-wrap:wrap; justify-content:center; }
+.box { width:130px; height:130px; border-radius:15px; object-fit:cover; cursor:pointer; transition:0.3s; box-shadow:0 4px 10px rgba(0,0,0,0.2);}
+.box:hover { transform:scale(1.1); }
+
+/* PERSON PAGE */
+.person-gallery { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin-top:30px; }
+.gallery-item { width:130px; height:130px; border-radius:15px; object-fit:cover; cursor:pointer; transition:0.3s; }
+.gallery-item:hover { transform:scale(1.1); }
+
+.detail-img { width:400px; max-width:90%; border-radius:15px; margin-top:20px; }
+/* IMAGE DETAIL WHITE BOX */
+.detail-box {
+    background-color: rgba(255,255,255,0.85);
+    padding: 40px;
+    border-radius: 20px;
+    display: inline-block;
+    color: black;
+    max-width: 700px;
+}
+.desc { max-width:500px; margin-top:20px; }
+
+button { margin-top:30px; padding:12px 25px; border:none; border-radius:10px; cursor:pointer; font-size:16px; background:white; color:black; }
+
+footer { position:fixed; bottom:0; width:100%; background:rgba(0,0,0,0.6); padding:10px 0; font-size:14px; }
+
+
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <a onclick="showPage('mainPage')">Home</a>
+    <a onclick="showPage('aboutPage')">About</a>
+    <a onclick="showPage('contactPage')">Contact</a>
+</nav>
+
+<!-- INTRO PAGE -->
+<div id="introPage" class="page">
+    <div class="intro-box">
+        <h1 style="font-style: italic;">Welcome, Anhyeong haseyeo, Sawadee Khap, Kumusta</h1>
+        <p>This website showcases the unique stories and experiences of each of us, four friends from Academia de Pulilan. Here, you can explore our journeys, memories, and projects together as we share what makes our friendship and school life special.</p>
+        <button onclick="showPage('mainPage')">Continue</button>
+    </div>
+</div>
+
+<!-- HOMEPAGE -->
+<div id="mainPage" class="page">
+    <div class="content-box">
+        <h1>FOUR SOULS, FOUR GOALS</h1>
+        <div class="container">
+            <div><img src="f.jpg" class="box" onclick="showPerson('pink')"><span>Mae</span></div>
+            <div><img src="d.jpg" class="box" onclick="showPerson('blue')"><span>Dimps</span></div>
+            <div><img src="lei.jpg" class="box" onclick="showPerson('yellow')"><span>Lei Anne</span></div>
+            <div><img src="20.jpg" class="box" onclick="showPerson('cream')"><span>Thea</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- PERSON PAGE -->
+<div id="personPage" class="page" style="background-color:rgba(0,0,0,0.8);">
+    <h1 id="personTitle"></h1>
+    <p id="personDesc"></p>
+    <div class="person-gallery" id="personGallery"></div>
+    <button onclick="showPage('mainPage')">Back to Home</button>
+</div>
+
+<!-- IMAGE DETAIL PAGE -->
+<<div id="imageDetailPage" class="page">
+    <div class="detail-box">
+        <h1 id="imageTitle"></h1>
+        <img id="detailImg" class="detail-img" src="">
+        <p id="imageDesc" class="desc"></p>
+        <button onclick="backToPerson()">Return</button>
+    </div>
+</div>
+<!-- ABOUT PAGE -->
+<div id="aboutPage" class="page" style="background-color:rgba(0,0,0,0.8);">
+    <h1>About</h1>
+    <p>Our journey as four friends at Academia de Pulilan has been full of learning, laughter, and unforgettable memories. From the first day we stepped into the campus, we faced challenges together, supported each other in our studies, and celebrated our achievements as a team. The teachers guided us with patience, and the environment encouraged us to grow not only academically but also personally. Every project, activity, and event strengthened our bond, making our time at Academia de Pulilan truly special. Looking back, we are grateful for every moment, knowing that this journey has shaped us into better students and better friends.</p>
+    <button onclick="showPage('mainPage')">Back to Home</button>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="contactPage" class="page" style="background-color:rgba(0,0,0,0.8);">
+    <h1>Contact</h1>
+    <p>Email: leiannepineda98@gmail.com</p>
+	<p>       maeleonardo.00@gmail.com</p>
+	<p>       theaelize23@gmail.com</p>
+	<p>       dimplealagos015@gmail.com</p>
+    <button onclick="showPage('mainPage')">Back to Home</button>
+</div>
+
+<footer>@created by Group of Dimple, Lei Anne, Fiona, and Thea</footer>
+
+<script>
+// PEOPLE DATA
+const people = {
+    pink: {
+        name:"Fiona Mae L. Leonardo",
+        desc:"Senior high school has been a journey of growth and self-discovery for me. At first, I was afraid that I would end up being alone. It was difficult adjusting to a new environment, meeting new classmates, and trying to fit in. There were moments when I felt lost and unsure of myself, but little by little, I learned how to keep up with everyone else. Grade 11 felt like a blur because everything happened so fast, yet every experience was meaningful and worth my time. Now that I am in Grade 12, things feel different in the best way possible. I have my “quadro” with me, and having them by my side made this school year lighter and more memorable. Because of them, I was able to achieve so many things and push myself beyond my limits. This year was not easy—it was filled with tears, pressure, and sleepless nights—but it was all worth it. As I prepare to graduate, I promise to cherish every remaining moment while I am still a high school student and carry these memories with me into the next chapter of my life.",
+        bg:"f.jpg",
+        gallery:[
+            {src:"11.jpg", title:"Intramurals 2025", desc:"During our intramurals, I was really happy and just enjoying the moment. I felt energetic and playful that day."},
+            {src:"12.jpg", title:"Acquintance Party 2025", desc:"At our acquaintance party, we performed a slow dance and hiphop. It was a fun and memorable night to remember"},
+            {src:"13.jpg", title:"Work Immersion Seminar", desc:"This was during our work immersion seminar. I was listening carefully and trying to learn more from the discussion."},
+            {src:"14.jpg", title:"Field Trip 2024", desc:"During our field trip, I really enjoyed the experience and had so much fun with my classmates. It was a memorable day filled with laughter, bonding, and new learnings."},
+            {src:"15.jpg", title:"Acquintance Party 2025", desc:"At our acquaintance party, I dressed up and felt a little shy but also confident. It was a fun and memorable experience."}
+        ]
+    },
+    blue: {
+        name:"Dimple Shyna Alagos",
+        desc:"Starting senior high school at Academia de Pulilan brought many new challenges and changes. Adjusting to new classmates, teachers, and school routines was not always easy. There were moments of struggle, confusion, and learning, but each experience taught important lessons. These challenges helped build resilience, confidence, and a sense of growth that made the journey meaningful and memorable.",
+        bg:"d.jpg",
+        gallery:[
+            {src:"1.jpg", title:"First Friday Sunday Mass", desc:"Experiencing the First Friday Mass every month fills me with so much joy and gratitude. Being able to attend these masses has become a meaningful part of my routine, a special time to reflect and connect with God. For me, it’s not just about personal prayer, but also seeing my fellow students come together in faith. Witnessing their devotion and feeling the shared spirit of worship makes me happy, knowing that these moments help bring all of us closer to the Lord."},
+            {src:"2.jpg", title:"First Teachers day w/ Ma'am Reg", desc:"The first Teachers’ Day with Ma’am Reg was truly special because it brought us closer together—not only with her but also with each other. Planning and arranging the surprise as a group strengthened our bond and teamwork, making the experience both fulfilling and memorable. Even though we had only been with Ma’am for a few months, we were able to show her how much she means to us, making the day full of gratitude, joy, and heartfelt connection."},
+            {src:"3.jpg", title:"Retreat", desc:"The retreat is one of the most unforgettable experiences I had at Academia de Pulilan. It was a special time to reflect on our mistakes, release the stress brought by school activities, and find peace within ourselves. More than that, it was an opportunity to create beautiful memories with classmates—moments full of laughter, bonding, and shared experiences that we will carry with us even after graduation."},
+            {src:"4.jpg", title:"Bulprisa District 1 Awarding", desc:"The awarding day at District 1 Level in Bulprisa was truly memorable, especially since it was my second time joining. That experience allowed me to showcase my talent in dancing, meet new friends, and build confidence in myself. At first, I doubted whether I could do it, but I realized that with perseverance, anything is possible. Even though I may not have become a professional in dancesport, the more important is the lessons and experiences I gained and memories I will treasure forever and even share with my grandchildren someday."},
+            {src:"5.jpg", title:"Fun Run", desc:"The fun run was truly a mix of emotions. I felt exhausted from all the running, yet at the same time, I was happy and energized—sometimes wanting to rest but still joining in the activities. Maybe it was overwhelming because it was my first time, but it turned out to be such a meaningful experience. The fun run helped me get closer to my classmates, especially since during the first three months, I was still hesitant and didn’t have many friends. Through this event, we were able to open up to each other, building deeper connections and friendships that made my school life even more memorable."}
+        ]
+    },
+    yellow: {
+        name:"Lei Anne Pineda",
+        desc:"I entered Academia De Pulilan for senior high school to have new experiences.",
+        bg:"lei.jpg",
+        gallery:[
+            {src:"6.jpg", title:"Aquintance Party 2025", desc:"This is the first time I experienced acquaintance party, this party helped us to know everyone and develop acquaintances. Our Grade 11 year was really a tough year. This picture is one of my favorite picture of ours– chaotic it seems yet full of memories of happiness."},
+            {src:"7.jpg", title:"SGO Election 2025", desc:"This was the one of the highlight of my senior year– I joined a school organization. This opportunity helped me let go of my comfort zone. It was a good one."},
+            {src:"8.jpg", title:"Acquintance Party 2025", desc:"Senior high school year gives me an opportunity to meet these amazing people, people who I can rely on everything."},
+            {src:"9.jpg", title:"Swimming Lesson", desc:"Our school have swimming lessons. At first, I was really scared, I am scared to be drowned by water but turns our i'm just drowned by the thoughts of my failure. This stage really highlighted my education year because this year I learned how to swim."},
+            {src:"10.jpg", title:"Academic Achievement", desc:"Academia really helped my senior year to be more lighter, which helped me to achieve my goals."}
+        ]
+    },
+    cream: {
+        name:"Thea Elize E. Masbate",
+        desc:"My two years in Senior High School at Academia de Pulilan brought me personal growth along with many challenges and memorable experiences. I felt the excitement, but I got anxious when I first reached the campus. The school environment was new to me, I met new people — including my classmates and teachers and a different responsibilities. I learned to adapt to senior high school requirements during my Grade 11 studies. The new sets of subject and its lessons to be studied, influence us to develop a better time management and foster our understanding to keep up. This new school environment taught me essential skills due to adapting a new learning environment, by developing a good time management and to be effective in handling multiple deadlines simultaneously — being productive and avoid procrastinating. I developed greater self-assurance and self-reliance in Grade 12. My relationships with others became stronger through building friendships which I believe will last throughout my life. I found my most important moments through project work and school activities and through sharing joyful times with my classmates. My teachers operated as instructors and mentors who assisted me with college preparation and dream chasing. Academia de Pulilan provided me with academic knowledge because it transformed me into a responsible person who shows respect while showing determination to reach my objectives. The lessons and character I developed over these two years prepared me for the next chapter of my life.",
+        bg:"20.jpg",
+        gallery:[
+            {src:"19.jpg", title:"Acquintance Party 2025", desc:"The first photo shows a group of young people taking a selfie at a nighttime party. They are close together, smiling, and making funny poses, which shows they are having fun."},
+            {src:"20.jpg", title:"Peace at Retreat", desc:"The second photo shows a girl standing on a bridge near a rocky river. She is wearing a white top, dark pants, and a black jacket. The background has trees and flowing water, giving a peaceful and natural vibe."},
+            {src:"16.jpg", title:"Fun Run", desc:"In this picture, a group of girls is taking a selfie after their school fan run. They are wearing white and yellow jerseys and look happy and energetic despite being tired."},
+            {src:"17.jpg", title:"Picture w/ Lei Anne", desc:"This picture was also taken during our retreat in Bataan. I am on the left, and my friend Lei is on the right. We look relaxed and happy, and the photo shows our friendship and the memories we shared."},
+            {src:"18.jpg", title:"Quicksnap in Retreat", desc:"This photo was taken during the ADP retreat in Bataan. Five students are taking a selfie, wearing white shirts with yellow collars. They look close and happy to be together."}
+        ]
+    }
+};
+
+let currentPerson = "";
+
+// SHOW PAGE
+function showPage(pageId){
+    document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+    document.getElementById(pageId).style.display='flex';
+}
+
+// SHOW PERSON
+function showPerson(key){
+    currentPerson = key;
+    const data = people[key];
+    showPage('personPage');
+    document.getElementById('personTitle').innerText = data.name;
+    document.getElementById('personDesc').innerText = data.desc;
+    document.getElementById('personPage').style.backgroundImage = `url(${data.bg})`;
+    document.getElementById('personPage').style.backgroundSize = 'cover';
+    document.getElementById('personPage').style.backgroundPosition = 'center';
+
+    const galleryDiv = document.getElementById('personGallery');
+    galleryDiv.innerHTML = "";
+    data.gallery.forEach(item=>{
+        const img = document.createElement('img');
+        img.src = item.src;
+        img.className = "gallery-item";
+        img.title = item.title;
+        img.onclick = ()=>showImageDetail(item);
+        galleryDiv.appendChild(img);
+    });
+}
+
+// SHOW IMAGE DETAIL
+function showImageDetail(item){
+
+    // KUHANIN muna background ng person page
+    const personBg = document.getElementById('personPage').style.backgroundImage;
+
+    // ILAGAY sa image detail page
+    document.getElementById('imageDetailPage').style.backgroundImage = personBg;
+    document.getElementById('imageDetailPage').style.backgroundSize = "cover";
+    document.getElementById('imageDetailPage').style.backgroundPosition = "center";
+
+    // TSAAKA ipakita page
+    showPage('imageDetailPage');
+
+    document.getElementById('imageTitle').innerText = item.title;
+    document.getElementById('detailImg').src = item.src;
+    document.getElementById('imageDesc').innerText = item.desc;
+}
+
+// BACK TO PERSON
+function backToPerson(){ showPerson(currentPerson); }
+
+// INIT: SHOW INTRO FIRST
+showPage('introPage');
+
+</script>
+</body>
+</html>
